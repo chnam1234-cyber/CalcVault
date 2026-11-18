@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/calc_bg"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/setupHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/hint_bg"
+        android:padding="12dp"
+        android:textColor="@color/key_text"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/display"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ellipsize="start"
+        android:gravity="bottom|end"
+        android:maxLines="2"
+        android:paddingHorizontal="8dp"
+        android:text="0"
+        android:textColor="@color/key_text"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="28sp"
+        android:autoSizeMaxTextSize="72sp" />
+
+    <TextView
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="end|center_vertical"
+        android:paddingHorizontal="8dp"
+        android:textColor="@color/preview_text"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:id="@+id/keypad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.6"
+        android:orientation="vertical">
+        <LinearLayout style="@style/KeyRow">
+            <Button style="@style/KeyFn" android:text="C" />
+            <Button style="@style/KeyFn" android:text="⌫" />
+            <Button style="@style/KeyFn" android:text="%" />
+            <Button style="@style/KeyOp" android:text="÷" />
+        </LinearLayout>
+        <LinearLayout style="@style/KeyRow">
+            <Button style="@style/KeyNum" android:text="7" />
+            <Button style="@style/KeyNum" android:text="8" />
+            <Button style="@style/KeyNum" android:text="9" />
+            <Button style="@style/KeyOp" android:text="×" />
+        </LinearLayout>
+        <LinearLayout style="@style/KeyRow">
+            <Button style="@style/KeyNum" android:text="4" />
+            <Button style="@style/KeyNum" android:text="5" />
+            <Button style="@style/KeyNum" android:text="6" />
+            <Button style="@style/KeyOp" android:text="−" />
+        </LinearLayout>
+        <LinearLayout style="@style/KeyRow">
+            <Button style="@style/KeyNum" android:text="1" />
+            <Button style="@style/KeyNum" android:text="2" />
+            <Button style="@style/KeyNum" android:text="3" />
+            <Button style="@style/KeyOp" android:text="+" />
+        </LinearLayout>
+        <LinearLayout style="@style/KeyRow">
+            <Button style="@style/KeyNumWide" android:text="0" />
+            <Button style="@style/KeyNum" android:text="." />
+            <Button style="@style/KeyOp" android:text="=" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="calc_bg">#000000</color>
+    <color name="key_num">#333333</color>
+    <color name="key_fn">#A5A5A5</color>
+    <color name="key_op">#FF9F0A</color>
+    <color name="key_text">#FFFFFF</color>
+    <color name="key_fn_text">#000000</color>
+    <color name="preview_text">#8E8E93</color>
+    <color name="accent">#FF9F0A</color>
+</resources>

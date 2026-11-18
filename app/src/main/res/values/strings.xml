@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">เครื่องคิดเลข</string>
+
+    <string name="setup_hint_1">ครั้งแรก: ตั้งรหัสลับ — พิมพ์ตัวเลข 6 หลักแล้วกด =</string>
+    <string name="setup_hint_2">พิมพ์รหัส 6 หลักเดิมอีกครั้งแล้วกด = เพื่อยืนยัน</string>
+    <string name="setup_need_6">รหัสต้องเป็นตัวเลข 6 หลัก</string>
+    <string name="setup_confirm">พิมพ์รหัสอีกครั้งเพื่อยืนยัน</string>
+    <string name="setup_mismatch">รหัสไม่ตรงกัน ลองใหม่อีกครั้ง</string>
+    <string name="setup_done">ตั้งรหัสแล้ว! พิมพ์รหัสแล้วกด = เพื่อเข้าห้องลับ</string>
+
+    <string name="vault_title">แอปที่ซ่อนไว้</string>
+    <string name="vault_empty">ยังไม่มีแอป\nกดปุ่ม + เพื่อเลือกแอปที่จะซ่อน\n\nกดค้างที่ไอคอนเพื่อนำออก</string>
+    <string name="add_apps">เพิ่ม/เลือกแอป</string>
+    <string name="pick_apps">เลือกแอปที่จะซ่อน</string>
+    <string name="save">บันทึก</string>
+    <string name="change_pin">เปลี่ยนรหัส</string>
+    <string name="lock">ล็อก</string>
+    <string name="old_pin">รหัสเดิม</string>
+    <string name="new_pin">รหัสใหม่ (6 หลัก)</string>
+    <string name="confirm_pin">ยืนยันรหัสใหม่</string>
+    <string name="wrong_old_pin">รหัสเดิมไม่ถูกต้อง</string>
+    <string name="pin_changed">เปลี่ยนรหัสเรียบร้อย</string>
+    <string name="remove_from_vault">นำออกจากห้องลับ</string>
+    <string name="app_info">ข้อมูลแอป (ตั้งค่า)</string>
+    <string name="cannot_open">เปิดแอปนี้ไม่ได้</string>
+</resources>

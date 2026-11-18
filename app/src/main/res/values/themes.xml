@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CalcVault" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorOnPrimary">#000000</item>
+    </style>
+
+    <style name="Theme.CalcVault.Calc" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:statusBarColor">@color/calc_bg</item>
+        <item name="android:navigationBarColor">@color/calc_bg</item>
+        <item name="android:windowBackground">@color/calc_bg</item>
+    </style>
+
+    <style name="KeyRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="KeyBase" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:padding">0dp</item>
+        <item name="cornerRadius">40dp</item>
+        <item name="android:textColor">@color/key_text</item>
+    </style>
+    <style name="KeyNum" parent="KeyBase">
+        <item name="backgroundTint">@color/key_num</item>
+    </style>
+    <style name="KeyNumWide" parent="KeyNum">
+        <item name="android:layout_weight">2.12</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:paddingStart">32dp</item>
+    </style>
+    <style name="KeyFn" parent="KeyBase">
+        <item name="backgroundTint">@color/key_fn</item>
+        <item name="android:textColor">@color/key_fn_text</item>
+    </style>
+    <style name="KeyOp" parent="KeyBase">
+        <item name="backgroundTint">@color/key_op</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+</resources>
