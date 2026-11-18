@@ -131,8 +131,15 @@ class VaultActivity : AppCompatActivity() {
                 offerUninstallOriginals(ok)
             }
             REQ_SETUP -> {
-                if (resultCode == RESULT_OK) toast(R.string.secret_ready) else toast(R.string.setup_cancelled)
-                reload()
+                // Profile setup finishes asynchronously; give it a moment before checking
+                window.decorView.postDelayed({
+                    when {
+                        SecretSpace.isReady(this) -> toast(R.string.secret_ready)
+                        resultCode == RESULT_OK -> toast(R.string.secret_finishing)
+                        else -> toast(R.string.setup_cancelled)
+                    }
+                    reload()
+                }, 1500)
             }
             REQ_LAUNCH -> if (resultCode != RESULT_OK) toast(R.string.cannot_open)
         }
@@ -158,21 +165,31 @@ class VaultActivity : AppCompatActivity() {
         if (!SecretSpace.canSetUp(this)) {
             AlertDialog.Builder(this)
                 .setTitle(R.string.setup_unavailable_title)
-                .setMessage(R.string.setup_unavailable_msg)
-                .setPositiveButton(android.R.string.ok, null)
+                .setMessage(getString(R.string.setup_unavailable_msg) + "\n\n" + SecretSpace.diagnostics(this))
+                .setPositiveButton(R.string.try_anyway) { _, _ -> launchProvisioning() }
+                .setNegativeButton(android.R.string.cancel, null)
                 .show()
             return
         }
         AlertDialog.Builder(this)
             .setTitle(R.string.setup_title)
             .setMessage(R.string.setup_msg)
-            .setPositiveButton(R.string.setup_go) { _, _ ->
-                launchingChild = true
-                try { startActivityForResult(SecretSpace.provisionIntent(this), REQ_SETUP) }
-                catch (e: ActivityNotFoundException) { toast(R.string.setup_unavailable_title) }
-            }
+            .setPositiveButton(R.string.setup_go) { _, _ -> launchProvisioning() }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+    }
+
+    private fun launchProvisioning() {
+        launchingChild = true
+        try { startActivityForResult(SecretSpace.provisionIntent(this), REQ_SETUP) }
+        catch (e: Exception) {
+            launchingChild = false
+            AlertDialog.Builder(this)
+                .setTitle(R.string.setup_unavailable_title)
+                .setMessage(e.javaClass.simpleName + ": " + e.message + "\n\n" + SecretSpace.diagnostics(this))
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+        }
     }
 
     // ---------- long-press options ----------

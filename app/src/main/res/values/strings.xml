@@ -50,4 +50,6 @@
     <string name="remove_secret">ลบออกจากพื้นที่ลับ</string>
     <string name="remove_secret_confirm">ตัวโคลนในพื้นที่ลับจะถูกถอนการติดตั้ง (ข้อมูลในตัวโคลนจะหาย)</string>
     <string name="remove">ลบ</string>
+    <string name="try_anyway">ลองอยู่ดี</string>
+    <string name="secret_finishing">กำลังตั้งค่าพื้นที่ลับ… ออกแล้วเข้าห้องลับใหม่อีกครั้ง</string>
 </resources>

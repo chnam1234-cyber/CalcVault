@@ -45,6 +45,23 @@ object SecretSpace {
     fun canSetUp(ctx: Context): Boolean =
         dpm(ctx).isProvisioningAllowed(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE)
 
+    /** Human-readable info to explain why setup isn't allowed. */
+    fun diagnostics(ctx: Context): String {
+        val pm = ctx.packageManager
+        val um = ctx.getSystemService(android.os.UserManager::class.java)
+        val la = ctx.getSystemService(android.content.pm.LauncherApps::class.java)
+        val provisioner = pm.queryIntentActivities(
+            Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE), 0).firstOrNull()?.activityInfo?.packageName
+        return buildString {
+            appendLine("${Build.MANUFACTURER} ${Build.MODEL} · Android ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})")
+            appendLine("managed_users: ${pm.hasSystemFeature(PackageManager.FEATURE_MANAGED_USERS)}")
+            appendLine("device_admin: ${pm.hasSystemFeature(PackageManager.FEATURE_DEVICE_ADMIN)}")
+            appendLine("allowed: ${canSetUp(ctx)}")
+            appendLine("profiles: ${um.userProfiles.size} / launcher: ${la.profiles.size}")
+            append("provisioner: ${provisioner ?: "none"}")
+        }
+    }
+
     fun provisionIntent(ctx: Context) = Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE)
         .putExtra(DevicePolicyManager.EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME, admin(ctx))
         .putExtra(DevicePolicyManager.EXTRA_PROVISIONING_SKIP_ENCRYPTION, true)
