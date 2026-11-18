@@ -10,7 +10,7 @@
     <string name="setup_done">ตั้งรหัสแล้ว! พิมพ์รหัสแล้วกด = เพื่อเข้าห้องลับ</string>
 
     <string name="vault_title">แอปที่ซ่อนไว้</string>
-    <string name="vault_empty">ยังไม่มีแอป\nกดปุ่ม + เพื่อเลือกแอปที่จะซ่อน\n\nกดค้างที่ไอคอนเพื่อนำออก</string>
+    <string name="vault_empty">ยังไม่มีแอป\nกดปุ่ม + เพื่อเพิ่มแอป\n\nกดค้างที่ไอคอนเพื่อนำออก</string>
     <string name="add_apps">เพิ่ม/เลือกแอป</string>
     <string name="pick_apps">เลือกแอปที่จะซ่อน</string>
     <string name="save">บันทึก</string>
@@ -24,4 +24,30 @@
     <string name="remove_from_vault">นำออกจากห้องลับ</string>
     <string name="app_info">ข้อมูลแอป (ตั้งค่า)</string>
     <string name="cannot_open">เปิดแอปนี้ไม่ได้</string>
+
+    <!-- Secret space -->
+    <string name="setup_card_title">🔒 เปิดพื้นที่ลับ</string>
+    <string name="setup_card_body">ซ่อนแอปออกจากหน้าหลักได้จริง แอปจะถูกโคลนเข้ามาอยู่ในนี้ และเปิดได้จากเครื่องคิดเลขเท่านั้น</string>
+    <string name="setup_go">เปิดพื้นที่ลับ</string>
+    <string name="setup_title">สร้างพื้นที่ลับ</string>
+    <string name="setup_msg">ระบบ Android จะสร้าง "โปรไฟล์งาน" ให้แอปนี้ (ใช้เวลาประมาณ 1 นาที)\n\nหน้าจอที่ขึ้นมาอาจพูดถึง "องค์กร" หรือ "งาน" — กดดำเนินการต่อได้เลย ไม่มีใครเข้าถึงข้อมูลของคุณ</string>
+    <string name="setup_unavailable_title">เปิดพื้นที่ลับไม่ได้</string>
+    <string name="setup_unavailable_msg">เครื่องนี้มีโปรไฟล์งานอยู่แล้ว หรือผู้ผลิตปิดฟีเจอร์นี้ไว้\n\nถ้ามีโปรไฟล์งานจากแอปอื่น (เช่น Shelter, Island) ให้ลบออกก่อน ที่ ตั้งค่า → บัญชี → โปรไฟล์งาน\n\nยังใช้โหมด "ทางลัด" ได้ตามปกติ</string>
+    <string name="setup_cancelled">ยกเลิกการสร้างพื้นที่ลับ</string>
+    <string name="secret_ready">พื้นที่ลับพร้อมแล้ว! กด + เพื่อซ่อนแอป</string>
+    <string name="secret_not_ready">พื้นที่ลับยังไม่พร้อม</string>
+    <string name="add_secret">🔒 ซ่อนจริง (โคลนเข้าพื้นที่ลับ)</string>
+    <string name="add_shortcut">ทางลัด (รวมแอปโคลนของเครื่อง)</string>
+    <string name="pick_secret">เลือกแอปที่จะซ่อน</string>
+    <string name="pick_shortcut">เลือกทางลัด</string>
+    <string name="pick_secret_hint">แอปที่เลือกจะถูกโคลนเข้าพื้นที่ลับและซ่อนไว้ หลังจากนั้นลบตัวบนหน้าหลักทิ้งได้ หรือเก็บไว้ใช้เป็น 2 บัญชีก็ได้ (ตัวโคลนต้องล็อกอินใหม่)</string>
+    <string name="pick_shortcut_hint">แอปยังอยู่ที่หน้าหลักเหมือนเดิม แค่เปิดจากห้องลับได้ แอปที่มีเครื่องหมาย ⧉ คือแอปโคลนของเครื่อง (Dual Apps)</string>
+    <string name="clone_failed">โคลนแอปไม่สำเร็จ</string>
+    <string name="cloned_title">ซ่อนเรียบร้อย</string>
+    <string name="cloned_msg">แอปถูกโคลนเข้าพื้นที่ลับแล้ว\n\nต้องการลบตัวต้นฉบับออกจากหน้าหลักไหม? (ตัวในพื้นที่ลับยังอยู่)</string>
+    <string name="remove_originals">ลบตัวบนหน้าหลัก</string>
+    <string name="keep_both">เก็บไว้ทั้งคู่</string>
+    <string name="remove_secret">ลบออกจากพื้นที่ลับ</string>
+    <string name="remove_secret_confirm">ตัวโคลนในพื้นที่ลับจะถูกถอนการติดตั้ง (ข้อมูลในตัวโคลนจะหาย)</string>
+    <string name="remove">ลบ</string>
 </resources>

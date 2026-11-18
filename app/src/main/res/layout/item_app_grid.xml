@@ -7,11 +7,26 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/icon"
+    <FrameLayout
         android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:importantForAccessibility="no" />
+        android:layout_height="56dp">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no" />
+
+        <ImageView
+            android:id="@+id/lockBadge"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/badge_bg"
+            android:padding="3dp"
+            android:src="@drawable/ic_lock"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/label"

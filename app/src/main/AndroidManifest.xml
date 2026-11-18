@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Only this app (same signature) may send commands into the secret space -->
+    <permission
+        android:name="com.calcvault.app.permission.CMD"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.calcvault.app.permission.CMD" />
+
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
     <!-- Needed on Android 11+ to see which apps are installed -->
     <queries>
         <intent>
@@ -17,11 +27,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalcVault">
 
+        <!-- ===== Personal side (what the user sees) ===== -->
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.CalcVault.Calc"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CalcVault.Calc">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -37,5 +48,77 @@
             android:name=".AppPickerActivity"
             android:excludeFromRecents="true"
             android:exported="false" />
+
+        <!-- ===== Secret space side (runs inside the work profile) ===== -->
+        <receiver
+            android:name=".AdminReceiver"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.PROFILE_PROVISIONING_COMPLETE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Android 12+ provisioning hooks -->
+        <activity
+            android:name=".ProvisionModeActivity"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.app.action.GET_PROVISIONING_MODE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".PolicyComplianceActivity"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.app.action.ADMIN_POLICY_COMPLIANCE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ProvisioningSuccessActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.app.action.PROVISIONING_SUCCESSFUL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Receives commands from the calculator. Disabled by default; enabled only inside the work profile,
+             so on the personal side the intent resolves straight to the cross-profile forwarder. -->
+        <activity
+            android:name=".ProfileCommandActivity"
+            android:enabled="false"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:permission="com.calcvault.app.permission.CMD"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="com.calcvault.app.action.CMD" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".GuardService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Re-hides vault apps when the screen turns off" />
+        </service>
     </application>
 </manifest>

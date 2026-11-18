@@ -21,9 +21,15 @@ class PinStore(context: Context) {
         return MessageDigest.isEqual(stored.toByteArray(), hash(pin, salt).toByteArray())
     }
 
+    /** Shortcut entries, "<userSerial>:<package>". */
     var hiddenApps: Set<String>
         get() = prefs.getStringSet(KEY_APPS, emptySet())!!.toSet()
         set(value) { prefs.edit().putStringSet(KEY_APPS, value.toSet()).apply() }
+
+    /** Packages cloned into the secret space (work profile). */
+    var secretApps: Set<String>
+        get() = prefs.getStringSet(KEY_SECRET, emptySet())!!.toSet()
+        set(value) { prefs.edit().putStringSet(KEY_SECRET, value.toSet()).apply() }
 
     private fun hash(pin: String, salt: String): String =
         MessageDigest.getInstance("SHA-256").digest("$salt:$pin".toByteArray()).toHex()
@@ -34,7 +40,8 @@ class PinStore(context: Context) {
         const val PIN_LENGTH = 6
         private const val KEY_HASH = "pin_hash"
         private const val KEY_SALT = "pin_salt"
-        private const val KEY_APPS = "hidden_apps"
+        private const val KEY_APPS = "shortcut_apps"
+        private const val KEY_SECRET = "secret_apps"
 
         fun isValidPin(s: String) = s.length == PIN_LENGTH && s.all { it.isDigit() }
     }
