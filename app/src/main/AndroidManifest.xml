@@ -3,9 +3,9 @@
 
     <!-- Only this app (same signature) may send commands into the secret space -->
     <permission
-        android:name="com.calcvault.app.permission.CMD"
+        android:name="${applicationId}.permission.CMD"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.calcvault.app.permission.CMD" />
+    <uses-permission android:name="${applicationId}.permission.CMD" />
 
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -104,7 +104,7 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:noHistory="true"
-            android:permission="com.calcvault.app.permission.CMD"
+            android:permission="${applicationId}.permission.CMD"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="com.calcvault.app.action.CMD" />

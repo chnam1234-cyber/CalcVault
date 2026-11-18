@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.calcvault.app"
+        applicationId = "com.calcvault.vault"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
