@@ -14,8 +14,21 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+    // Fixed signing key so every build can be installed over the previous one
+    signingConfigs {
+        create("vault") {
+            storeFile = file("calcvault.jks")
+            storePassword = "calcvault"
+            keyAlias = "calcvault"
+            keyPassword = "calcvault"
+        }
+    }
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("vault")
+        }
         release {
+            signingConfig = signingConfigs.getByName("vault")
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
