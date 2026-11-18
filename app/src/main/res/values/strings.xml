@@ -39,9 +39,9 @@
     <string name="add_secret">🔒 ซ่อนจริง (โคลนเข้าพื้นที่ลับ)</string>
     <string name="add_shortcut">ทางลัด (รวมแอปโคลนของเครื่อง)</string>
     <string name="pick_secret">เลือกแอปที่จะซ่อน</string>
-    <string name="pick_shortcut">เลือกทางลัด</string>
+    <string name="pick_shortcut">เลือกแอปที่จะซ่อน</string>
     <string name="pick_secret_hint">แอปที่เลือกจะถูกโคลนเข้าพื้นที่ลับและซ่อนไว้ หลังจากนั้นลบตัวบนหน้าหลักทิ้งได้ หรือเก็บไว้ใช้เป็น 2 บัญชีก็ได้ (ตัวโคลนต้องล็อกอินใหม่)</string>
-    <string name="pick_shortcut_hint">แอปยังอยู่ที่หน้าหลักเหมือนเดิม แค่เปิดจากห้องลับได้ แอปที่มีเครื่องหมาย ⧉ คือแอปโคลนของเครื่อง (Dual Apps)</string>
+    <string name="pick_shortcut_hint">แอปที่เลือกจะหายจากหน้าหลัก (เมื่อใช้หน้าหลักของแอปนี้) และเปิดได้จากห้องลับเท่านั้น\nแอปที่มี ⧉ คือแอปโคลนของเครื่อง</string>
     <string name="clone_failed">โคลนแอปไม่สำเร็จ</string>
     <string name="cloned_title">ซ่อนเรียบร้อย</string>
     <string name="cloned_msg">แอปถูกโคลนเข้าพื้นที่ลับแล้ว\n\nต้องการลบตัวต้นฉบับออกจากหน้าหลักไหม? (ตัวในพื้นที่ลับยังอยู่)</string>
@@ -52,4 +52,12 @@
     <string name="remove">ลบ</string>
     <string name="try_anyway">ลองอยู่ดี</string>
     <string name="secret_finishing">กำลังตั้งค่าพื้นที่ลับ… ออกแล้วเข้าห้องลับใหม่อีกครั้ง</string>
+    <string name="home_label">หน้าหลักเครื่องคิดเลข</string>
+    <string name="search_apps">ค้นหาแอป</string>
+    <string name="uninstall">ถอนการติดตั้ง</string>
+    <string name="home_card_title">🏠 ตั้งเป็นหน้าหลัก</string>
+    <string name="home_card_body">เพื่อให้แอปที่ซ่อนหายจากหน้าหลักจริงๆ ต้องตั้งแอปนี้เป็นหน้าหลักของมือถือ (เลือก \"หน้าหลักเครื่องคิดเลข\")</string>
+    <string name="home_card_button">ตั้งเป็นหน้าหลัก</string>
+    <string name="add_hide">ซ่อนจากหน้าหลัก (รวมแอปโคลน)</string>
+    <string name="home_set_hint">เลือก \"หน้าหลักเครื่องคิดเลข\" แล้วกด ตั้งเป็นค่าเริ่มต้น</string>
 </resources>

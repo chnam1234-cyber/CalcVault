@@ -12,6 +12,15 @@
         <item name="android:windowBackground">@color/calc_bg</item>
     </style>
 
+    <style name="Theme.CalcVault.Home" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">#33000000</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
     <style name="KeyRow">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>

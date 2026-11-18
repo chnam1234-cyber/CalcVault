@@ -20,6 +20,7 @@
             android:visibility="gone">
 
             <TextView
+                android:id="@+id/setupTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/setup_card_title"
@@ -27,6 +28,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/setupBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

@@ -45,7 +45,9 @@ class VaultActivity : AppCompatActivity() {
             adapter = this@VaultActivity.adapter
         }
         findViewById<View>(R.id.fabAdd).setOnClickListener { chooseAddMode() }
-        findViewById<Button>(R.id.btnSetup).setOnClickListener { startSetup() }
+        findViewById<Button>(R.id.btnSetup).setOnClickListener {
+            if (!HomeActivity.isDefaultHome(this)) askDefaultHome() else startSetup()
+        }
     }
 
     override fun onResume() {
@@ -67,7 +69,22 @@ class VaultActivity : AppCompatActivity() {
 
     private fun reload() {
         val ready = SecretSpace.isReady(this)
-        setupCard.visibility = if (ready) View.GONE else View.VISIBLE
+        val title = findViewById<TextView>(R.id.setupTitle)
+        val body = findViewById<TextView>(R.id.setupBody)
+        val btn = findViewById<Button>(R.id.btnSetup)
+        when {
+            !HomeActivity.isDefaultHome(this) -> {
+                setupCard.visibility = View.VISIBLE
+                title.setText(R.string.home_card_title); body.setText(R.string.home_card_body)
+                btn.setText(R.string.home_card_button)
+            }
+            !ready && SecretSpace.canSetUp(this) -> {
+                setupCard.visibility = View.VISIBLE
+                title.setText(R.string.setup_card_title); body.setText(R.string.setup_card_body)
+                btn.setText(R.string.setup_go)
+            }
+            else -> setupCard.visibility = View.GONE
+        }
 
         val secret = if (ready) store.secretApps.map { Apps.loadSecret(this, it) } else emptyList()
         val shortcuts = store.hiddenApps.mapNotNull { Apps.loadShortcut(this, it) }
@@ -96,15 +113,29 @@ class VaultActivity : AppCompatActivity() {
     // ---------- adding apps ----------
 
     private fun chooseAddMode() {
-        val opts = arrayOf(getString(R.string.add_secret), getString(R.string.add_shortcut))
+        val secretPossible = SecretSpace.isReady(this) || SecretSpace.canSetUp(this)
+        if (!secretPossible) { openPicker(AppPickerActivity.MODE_SHORTCUT); return }
+        val opts = arrayOf(getString(R.string.add_hide), getString(R.string.add_secret))
         AlertDialog.Builder(this)
             .setTitle(R.string.add_apps)
             .setItems(opts) { _, which ->
-                if (which == 0) {
-                    if (SecretSpace.isReady(this)) openPicker(AppPickerActivity.MODE_SECRET) else startSetup()
-                } else openPicker(AppPickerActivity.MODE_SHORTCUT)
+                if (which == 0) openPicker(AppPickerActivity.MODE_SHORTCUT)
+                else if (SecretSpace.isReady(this)) openPicker(AppPickerActivity.MODE_SECRET)
+                else startSetup()
             }
             .show()
+    }
+
+    private fun askDefaultHome() {
+        launchingChild = true
+        val intent = HomeActivity.setDefaultIntent(this)
+        try {
+            if (intent.action == Settings.ACTION_HOME_SETTINGS) toast(R.string.home_set_hint)
+            startActivityForResult(intent, REQ_HOME)
+        } catch (e: Exception) {
+            runCatching { startActivityForResult(Intent(Settings.ACTION_HOME_SETTINGS), REQ_HOME) }
+                .onFailure { launchingChild = false; toast(R.string.home_set_hint) }
+        }
     }
 
     private fun openPicker(mode: String) {
@@ -142,6 +173,7 @@ class VaultActivity : AppCompatActivity() {
                 }, 1500)
             }
             REQ_LAUNCH -> if (resultCode != RESULT_OK) toast(R.string.cannot_open)
+            REQ_HOME -> reload()
         }
     }
 
@@ -287,5 +319,6 @@ class VaultActivity : AppCompatActivity() {
         private const val REQ_LAUNCH = 4
         private const val REQ_REMOVE = 5
         private const val REQ_HIDE = 6
+        private const val REQ_HOME = 7
     }
 }
